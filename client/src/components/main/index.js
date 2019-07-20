@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import { withRouter } from "react-router";
 import { withStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,13 +19,13 @@ import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 
 import Router from '../router';
-import { Box } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    height: '100%',
+    display: 'flex'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -36,7 +37,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    backgroundColor: "rgba(0,0,0,.23)"
   },
   drawer: {
     width: drawerWidth,
@@ -58,8 +59,26 @@ const styles = theme => ({
     flex: '1 0 auto',
     flexDirection: 'column'
   },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    padding: '6px 0 7px'
+  },
   toolbar: theme.mixins.toolbar
 });
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& input': {
+        padding: '6px 5px 7px',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#000000',
+      },
+    },
+  },
+})(TextField);
 
 class Main extends React.Component {
   state = {
@@ -139,7 +158,7 @@ class Main extends React.Component {
         <AppBar position="fixed" className={this.props.classes.appBar}>
           <Toolbar>
             <Box display="flex" flexGrow={1} flexDirection="row">
-              <Box display="flex" flexGrow={1}>
+              <Box display="flex" alignItems="center" flexGrow={1}>
                 <Typography variant="h6" noWrap>
                   Qubit.
                 </Typography>
@@ -149,16 +168,11 @@ class Main extends React.Component {
                 <Fab size="medium" className={this.props.classes.fab}>
                   MS
                 </Fab>
-                <Typography variant="h7" noWrap>
-                  Mark Smith
-                </Typography>
-                <TextField
-                  id="outlined-bare"
+                <h5>Mark Smith</h5>
+                <CssTextField
                   className={this.props.classes.textField}
-                  defaultValue="Bare"
-                  margin="normal"
                   variant="outlined"
-                  inputProps={{ 'aria-label': 'bare' }}
+                  id="custom-css-outlined-input"
                 />
               </Box>
             </Box>

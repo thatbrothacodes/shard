@@ -4,15 +4,18 @@ import Main from './components/main';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faChartBar, faCloud, faUsers, faDesktop, faNetworkWired, faBell
+  faChartBar, faCloud, faUsers, faDesktop, faNetworkWired, faBell, faPlus, faTrashAlt, faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faBell,
   faChartBar,
+  faClock,
   faCloud,
   faDesktop,
   faNetworkWired,
+  faPlus,
+  faTrashAlt,
   faUsers
 );
 
